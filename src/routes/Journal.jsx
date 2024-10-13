@@ -30,7 +30,7 @@ const Journal = ({ handleJournalToggle, isOpen }) => {
   };
 
   useEffect(() => {
-    fetchData = async () => {
+    const fetchData = async () => {
       await fetchJournalEntries();
     };
 
