@@ -24,7 +24,7 @@ const LoginModal = ({ isModalOpen, closeModal }) => {
       userCredential = await signInWithEmailAndPassword(auth, email, password);
       dispatch(setUser(userCredential.user));
       navigate("/dashboard");
-      closeModal(); // Close modal on success
+      closeModal();
     } catch (error) {
       console.error("Authentication error:", error.message);
     } finally {
@@ -42,12 +42,12 @@ const LoginModal = ({ isModalOpen, closeModal }) => {
           transform: "translate(-50%, -50%)",
           width: "100%",
           maxWidth: "600px",
-          bgcolor: "#f4f4f9", // Matching journal modal background
+          bgcolor: "#f4f4f9",
           boxShadow: 24,
           p: 4,
           borderRadius: "12px",
           outline: "none",
-          height: "auto", // Adjust height dynamically
+          height: "auto",
           zIndex: 1300,
         }}
       >

@@ -20,7 +20,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import LoginModal from "../components/LoginModal";
 
-// Make sure to register the necessary components from Chart.js
 ChartJS.register(
   CategoryScale,
   LinearScale,
@@ -66,7 +65,6 @@ const Home = () => {
     }
   };
 
-  // Chart Data
   const data = {
     labels: [
       "Jan",
@@ -110,7 +108,6 @@ const Home = () => {
     ],
   };
 
-  // Chart options
   const options = {
     responsive: true,
     plugins: {
@@ -174,7 +171,7 @@ const Home = () => {
             </p>
             <button
               className='bg-white text-primary font-bold py-3 px-8 rounded-lg shadow-lg hover:bg-gray-100 transition'
-              onClick={() => setIsModalOpen(true)} // Open modal
+              onClick={() => setIsModalOpen(true)}
             >
               Begin Your Journey
             </button>

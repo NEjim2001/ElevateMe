@@ -15,12 +15,10 @@ const Chatbot = () => {
   const chatRef = useRef(null);
   const user = useSelector((state) => state.user.uid);
 
-  // Toggle chatbot open/close
   const toggleChatbot = () => {
     setActive(!active);
   };
 
-  // Handle send message
   const handleSendMessage = async (e) => {
     e.preventDefault();
     if (input.trim() === "") return;
@@ -85,10 +83,7 @@ const Chatbot = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.3, delay: 0.1 }}
           >
-            <div
-              className='p-4 flex-1 overflow-y-auto'
-              ref={chatRef} // Reference for auto-scrolling
-            >
+            <div className='p-4 flex-1 overflow-y-auto' ref={chatRef}>
               {chatHistory.length === 0 ? (
                 <p className='text-gray-500'>Start a conversation...</p>
               ) : (

@@ -5,9 +5,8 @@ import { useSelector } from "react-redux";
 export default function DailyMoodCheckPopup({ closePopup }) {
   const [userMood, setUserMood] = useState(0);
   const user = useSelector((state) => state.user.uid);
-  const [isOpen, setIsOpen] = useState(true); // Set to true to make it open initially
-
-  // Emoji and description for each mood
+  const [isOpen, setIsOpen] = useState(true);
+  const userID = useSelector((state) => state.user.user.uid);
   const moodEmojis = [
     { mood: 1, emoji: "😞", description: "Very Bad" },
     { mood: 2, emoji: "😕", description: "Bad" },
@@ -16,7 +15,6 @@ export default function DailyMoodCheckPopup({ closePopup }) {
     { mood: 5, emoji: "😁", description: "Very Good" },
   ];
 
-  // Send mood response to the backend
   const addResponse = async () => {
     try {
       await axios.post(
@@ -26,7 +24,7 @@ export default function DailyMoodCheckPopup({ closePopup }) {
         },
         {
           headers: {
-            Authorization: user,
+            Authorization: userID,
           },
         }
       );
@@ -35,10 +33,9 @@ export default function DailyMoodCheckPopup({ closePopup }) {
     }
   };
 
-  // Submit mood and close the popup
   const handleMoodSubmit = () => {
     addResponse();
-    setIsOpen(false); // Close the modal after submitting
+    setIsOpen(false);
   };
 
   return (
@@ -59,7 +56,7 @@ export default function DailyMoodCheckPopup({ closePopup }) {
             {/* Elevate Logo */}
             <div className=' justify-center mx-10 flex flex-row items-center gap-1'>
               <img
-                src='//image/logo.png'
+                src='/image/logo.png'
                 alt='Elevate Logo'
                 className='w-10 h-10 '
               />
@@ -100,7 +97,7 @@ export default function DailyMoodCheckPopup({ closePopup }) {
               <button
                 onClick={handleMoodSubmit}
                 className='bg-gradient-to-br from-primary to-secondary text-white p-3 rounded-lg w-full font-bold shadow-lg hover:shadow-2xl transition-all duration-300'
-                disabled={userMood === 0} // Disable until a mood is selected
+                disabled={userMood === 0}
               >
                 Submit
               </button>

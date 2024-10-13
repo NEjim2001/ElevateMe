@@ -14,6 +14,7 @@ function UserProfile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);
+  const userID = useSelector((state) => state.user.user.uid);
 
   const handleLogout = async () => {
     dispatch(setUserLoading(true));
@@ -28,7 +29,6 @@ function UserProfile() {
     }
   };
 
-  // Extract the first letter from the user's name or email
   const getInitial = () => {
     if (user?.displayName) {
       return user.displayName.charAt(0).toUpperCase();
@@ -36,7 +36,7 @@ function UserProfile() {
     if (user?.email) {
       return user.email.charAt(0).toUpperCase();
     }
-    return "U"; // Default if no user or email is present
+    return "U";
   };
 
   return (
@@ -56,10 +56,10 @@ function UserProfile() {
 
       {/* Welcome Message */}
       <h2 className='text-2xl font-bold mb-2 w-full'>
-        WELCOME,
+        WELCOME
         <br />
-        <span className='block w-full text-lg whitespace-nowrap overflow-hidden'>
-          {user?.displayName || user?.email?.split("@")[0]}
+        <span className='block w-full text-xl whitespace-nowrap overflow-hidden'>
+          BACK!
         </span>
       </h2>
 

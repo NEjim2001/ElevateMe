@@ -9,11 +9,10 @@ function MoodTrackerCalender({ moodData }) {
     rating: entry.rating,
   }));
 
-  // Function to return background color based on mood rating
   const getMoodColor = (rating) => {
     switch (rating) {
       case 1:
-        return "bg-red-600"; // Worst mood
+        return "bg-red-600";
       case 2:
         return "bg-orange-500";
       case 3:
@@ -21,9 +20,9 @@ function MoodTrackerCalender({ moodData }) {
       case 4:
         return "bg-green-400";
       case 5:
-        return "bg-green-600"; // Best mood
+        return "bg-green-600";
       default:
-        return ""; // Neutral
+        return "";
     }
   };
 
@@ -36,7 +35,7 @@ function MoodTrackerCalender({ moodData }) {
         return `${getMoodColor(moodDay.rating)} text-white hover:opacity-90`;
       }
     }
-    return "text-black"; // Default text color for dates without mood data
+    return "text-black";
   };
 
   return (

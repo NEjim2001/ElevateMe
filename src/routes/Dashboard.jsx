@@ -27,6 +27,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
+  const userID = useSelector((state) => state.user.user.uid);
 
   const fetchMoodResponses = async () => {
     try {
@@ -34,7 +35,7 @@ const Dashboard = () => {
         "https://uta-flask-website.vercel.app/api/check/fetchResponses",
         {
           headers: {
-            Authorization: user,
+            Authorization: userID,
           },
         }
       );
@@ -52,14 +53,13 @@ const Dashboard = () => {
   }, []);
 
   const handleToggle = () => {
-    setIsSliding(true); // Start animation
+    setIsSliding(true);
     setTimeout(() => {
-      setShowChart(!showChart); // Switch after the animation completes
-      setIsSliding(false); // End animation
-    }, 300); // Duration should match the animation timing
+      setShowChart(!showChart);
+      setIsSliding(false);
+    }, 300);
   };
 
-  // Modal toggle handler
   const handleJournalToggle = () => {
     setIsJournalOpen(!isJournalOpen);
   };
@@ -111,7 +111,7 @@ const Dashboard = () => {
           </section>
 
           {/* Action Buttons Section */}
-          <section className=' flex-row items-center w-3/4  my-8 space-x-24   h-1/3 flex justify-between '>
+          <section className=' flex-row items-center w-3/4  my-8 space-x-14   h-1/3 flex justify-between '>
             <div
               onClick={handleJournalToggle}
               className='h-full w-full flex flex-col items-center justify-around p-6 rounded-lg shadow-md transition cursor-pointer bg-gradient-to-r from-primaryOpacity to-secondaryOpacity hover:scale-105'

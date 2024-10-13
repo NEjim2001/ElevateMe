@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { TextField, Button, MenuItem, Slider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { dummyUser } from "../../constants/DummyMoodData";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../config/firebase";
+import { setUser } from "../redux/slices/user";
 
 const SignUp = () => {
   const [step, setStep] = useState(1);
@@ -49,14 +53,23 @@ const SignUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    userCredential = await createUserWithEmailAndPassword(
+    // userCredential = await createUserWithEmailAndPassword(
+    //   auth,
+    //   email,
+    //   password
+    // );
+    // dispatch(setUser(userCredential.user));
+    // navigate.apply("/dashboard");
+    // console.log(formData);
+
+    // Logins in as demo user
+    const userCredential = await signInWithEmailAndPassword(
       auth,
-      email,
-      password
+      dummyUser.email,
+      dummyUser.password
     );
     dispatch(setUser(userCredential.user));
-    navigate.apply("/dashboard");
-    console.log(formData);
+    navigate("/dashboard");
   };
 
   return (

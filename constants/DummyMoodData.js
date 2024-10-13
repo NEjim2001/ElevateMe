@@ -30,3 +30,8 @@ export const dummyMoodData = [
   { rating: 0, timestamp: "2024-09-15" },
   { rating: 0, timestamp: "2024-09-14" },
 ];
+
+export const dummyUser = {
+  email: "demo@test.com",
+  password: "demo123",
+};

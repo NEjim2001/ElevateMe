@@ -13,7 +13,6 @@ import {
 } from "chart.js";
 import { dummyMoodData } from "../../constants/DummyMoodData";
 
-// Register chart components
 ChartJS.register(
   CategoryScale,
   LinearScale,

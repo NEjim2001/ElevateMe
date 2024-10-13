@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { TextField, Button, Modal, Box } from "@mui/material";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -9,7 +9,8 @@ const Journal = ({ handleJournalToggle, isOpen }) => {
   const [image, setImage] = useState(null);
   const [entries, setEntries] = useState([]);
   const [viewEntries, setViewEntries] = useState(false);
-  const user = useSelector((state) => state.user.uid);
+  const user = useSelector((state) => state.user.user);
+  const userID = useSelector((state) => state.user.user.uid);
 
   const fetchJournalEntries = async () => {
     try {
@@ -17,7 +18,7 @@ const Journal = ({ handleJournalToggle, isOpen }) => {
         `https://uta-flask-website.vercel.app/api/journal/fetchEntries`,
         {
           headers: {
-            Authorization: user,
+            Authorization: userID,
           },
         }
       );
@@ -27,6 +28,14 @@ const Journal = ({ handleJournalToggle, isOpen }) => {
       console.error("Error fetching journal entries", error);
     }
   };
+
+  useEffect(() => {
+    fetchData = async () => {
+      await fetchJournalEntries();
+    };
+
+    fetchData();
+  }, []);
 
   const handleImageChange = (e) => {
     if (e.target.files && e.target.files[0]) {
